@@ -100,7 +100,7 @@ function placeOrder(n,j){let k=orderKey();if(locked(k))return;let p=orderPositio
 function checkOrder(){let k=orderKey();if(locked(k))return;let p=orderPositions();if(p.some(n=>n===null)){document.getElementById("orderfb").textContent="Place all code tiles before checking.";return}state.attempts[k]=tries(k)+1;let ok=p.every((n,j)=>n===j);state.completed[k]=ok;save();let fb=document.getElementById("orderfb");fb.className="feedback "+(ok?"correct":"wrong");fb.textContent=ok?"✓ Correct! Answer locked.":locked(k)?"✗ Two checks used. Answer locked.":"Not quite. You have one more try. Check the line order and indentation.";if(locked(k)){document.querySelector('button[onclick="checkOrder()"]').disabled=true;renderOrder()}refreshStatus()}
 function nextActivity(){let ix=tabs.indexOf(state.tab);selectTab(tabs[Math.min(ix+1,tabs.length-1)]);window.scrollTo({top:0,behavior:"instant"})}
 function resetLab(){if(confirm("Clear all saved answers and student information?")){localStorage.removeItem(KEY);sessionStorage.removeItem(STARTED);location.reload()}}
-const GRADE_ENDPOINT="https://script.google.com/a/macros/benhillschools.org/s/AKfycbz9IipEcz2wq8Hbye5zC3pyuXFCW9_4PlutdfW3oRwfKcTW5jMgV3FqxNYVWupvJ8kO/exec";
+const GRADE_ENDPOINT="https://script.google.com/a/macros/benhillschools.org/s/AKfycbwSO9TgVsYDqOpukIuVBjwaEAIoY9Vribb7AHyjCkFkZhfSBabhcjQ9B7zlH8lGxi4d/exec";
 async function submitGrade(){
  if(allCount()!==40||!state.first||!state.last||!state.period)return;
  const button=document.querySelector('button[onclick="submitGrade()"]');
